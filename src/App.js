@@ -6,6 +6,8 @@ import Nav from './components/Nav/Nav';
 import Form from './pages/Form/Form';
 import Categories from './pages/Categories/Categories';
 import Products from './pages/Products/Products';
+import StepForm from './components/StepForm/StepForm';
+import UncotrolledForm from './pages/UncotrolledForm/UncotrolledForm';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/form' element = {<Form />}/>
         <Route path='/categories' element = {<Categories/>} />
         <Route path='/categories/:slug'element={<Products/>}/>
+        <Route path='/stepForm' element = {<StepForm/>}/>
+        <Route path='/uncontrolled' element={<UncotrolledForm/>}/>
       </Routes>
     </BrowserRouter>
   );

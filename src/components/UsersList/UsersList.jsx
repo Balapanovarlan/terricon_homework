@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './UsersList.module.css';
 
 import UsersListItem from '../UsersListItem/UsersListItem';
+import axios from 'axios';
 
 const UsersList = () => {
     /* 
@@ -13,21 +14,30 @@ const UsersList = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                setIsLoading(true);
+        // const fetchUsers = async () => {
+        //     try {
+        //         setIsLoading(true);
 
-                const res = await fetch('https://dummyjson.com/users');
-                const data = await res.json();
-                setUsers(data.users);
-            } catch {
-                console.log("error");
-            } finally {
+        //         const res = await fetch('https://dummyjson.com/users');
+        //         const data = await res.json();
+        //         setUsers(data.users);
+        //     } catch {
+        //         console.log("error");
+        //     } finally {
+        //         setIsLoading(false);
+        //     }
+        // }
+
+        // fetchUsers();
+    setIsLoading(true);
+        axios
+            .get("https://dummyjson.com/users")
+            .then(response=>{
+                setUsers(response.data.users)
+            })
+            .finally(()=>{
                 setIsLoading(false);
-            }
-        }
-
-        fetchUsers();
+            })
     }, []);
 
     if (isLoading) {
